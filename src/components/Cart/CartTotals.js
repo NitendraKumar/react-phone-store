@@ -1,13 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import PayPalButton from './PayPalButton';
 
-const CartTotals = ({value}) => {
+const CartTotals = ({value, history}) => {
     const {cartSubTotal, cartTax, cartTotal, clearCart} = value;
+
     return (
         <React.Fragment>
-            <div className="container">
-                <div className="row">
-                    <div className="col-10 mt-2 ml-sm-5 ml-md-auto col-sm-8 text-capitalize text-right">
+            <div className="container-fluid">
+                <div className="row mr-5">
+                    <div className="mt-2 ml-sm-5 ml-md-auto col-sm-8 text-capitalize text-right">
                         <Link to="/" >
                             <button className='btn btn-outline-danger text-uppercase mb-3 px-5 ' type="button" onClick={()=> clearCart()}>
                                 clear cart
@@ -31,9 +33,10 @@ const CartTotals = ({value}) => {
                             </span>
                             <strong>$ {cartTotal}</strong>
                         </h5>
-
+                        <PayPalButton totalAmount={cartTotal} clearCart ={clearCart} history={history}></PayPalButton>
                     </div>
                 </div>
+                
             </div>
 
         </React.Fragment>
